@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理者画面</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>管理者画面</h1>
+        <div class="button-group">
+            <button onclick="showSection('roster')">名簿</button>
+            <button onclick="showSection('new-registration')">新規登録</button>
+            <button onclick="showSection('absent-check')">欠席確認</button>
+            <button onclick="showSection('attendance-check')">出席確認</button>
+            <button onclick="showSection('delete-student')">生徒削除</button>
+        </div>
+
+        <button class="back-btn" onclick="history.back()">戻る</button>
+
+        <div id="roster" class="admin-content admin-section active">
+            <h2>名簿</h2>
+            <table id="roster-table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>学年</th>
+                        <th>出欠</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="new-registration" class="admin-content admin-section">
+            <h2>新規登録</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">名前:</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-grade">学年:</label>
+                    <select id="reg-grade" required>
+                        <option value="">選択してください</option>
+                        <option value="小1">小1</option>
+                        <option value="小2">小2</option>
+                        <option value="小3">小3</option>
+                        <option value="小4">小4</option>
+                        <option value="小5">小5</option>
+                        <option value="小6">小6</option>
+                        <option value="中1">中1</option>
+                        <option value="中2">中2</option>
+                        <option value="中3">中3</option>
+                        <option value="高1">高1</option>
+                        <option value="高2">高2</option>
+                        <option value="高3">高3</option>
+                    </select>
+                </div>
+                <button type="submit">登録</button>
+            </form>
+        </div>
+
+        <div id="absent-check" class="admin-content admin-section">
+            <h2>欠席確認</h2>
+            <ul id="absent-list">
+            </ul>
+        </div>
+
+        <div id="attendance-check" class="admin-content admin-section">
+            <h2>出席確認</h2>
+            <ul id="attendance-list">
+            </ul>
+        </div>
+
+        <div id="delete-student" class="admin-content admin-section">
+            <h2>生徒削除</h2>
+            <div class="form-group">
+                <label for="student-select">削除する生徒を選択:</label>
+                <select id="student-select"></select>
+            </div>
+            <button id="delete-btn">削除</button>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+
+</html>

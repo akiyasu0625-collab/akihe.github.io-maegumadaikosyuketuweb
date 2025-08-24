@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欠席連絡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>欠席連絡</h1>
+        <form id="absent-form">
+            <div class="form-group">
+                <label for="name">名前:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="reason">要件:</label>
+                <textarea id="reason" rows="4" required></textarea>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="submit-btn">送信</button>
+            </div>
+        </form>
+        <button class="back-btn" onclick="history.back()">戻る</button>
+    </div>
+    <script>
+        document.getElementById('absent-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // フォームの送信をキャンセル
+            const name = document.getElementById('name').value;
+            const reason = document.getElementById('reason').value;
+
+            // ローカルストレージから既存の欠席連絡リストを取得
+            let absentReports = JSON.parse(localStorage.getItem('absentReports')) || [];
+
+            // 新しい欠席連絡をリストに追加
+            absentReports.push({ name: name, reason: reason });
+
+            // 更新されたリストをローカルストレージに保存
+            localStorage.setItem('absentReports', JSON.stringify(absentReports));
+
+            alert(`${name}さんの欠席連絡を送信しました。\n要件: ${reason}`);
+
+            // フォームをリセット
+            document.getElementById('absent-form').reset();
+        });
+    </script>
+</body>
+
+</html>
